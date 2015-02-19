@@ -1,29 +1,30 @@
-Brocade LBaaS Plugin Driver
-
-Installation info:
-
-- Enable the Brocade LBaaS Plugin Driver in neutron.conf
-
-comment the Haproxy (which is the default service provider for LOADBALANCER) under service_provider section and specify Brocade as the service provider for LOADBALANCER (as shown below)
-
-    service_provider = LOADBALANCER:brocade:neutron.services.loadbalancer.drivers.brocade.plugin_driver_v1.BrocadePluginDriverV1:default
+This repository contains the Brocade LBaaS Plugin Driver code for OpenStack. 
 
 
-To use this plugin driver, you must:
- - Install Brocade Neutron LBaaS Device Driver (from the Brocade Git Hub Location). Basically, download the  brocade_neutron_lbaas-1.0.tar.gz, unpack it in a temporary locaion and run sudo python setup.py install.
- - Create a driver config file, under /etc/neutron/services/loadbalancer/brocade/devices.json.
+Pre-requisites
+--------------
 
-Sample Configuration File:
-[
-    {
-        "name" :"Device 1",
-        "ip":"10.24.143.168",
-        "user":"admin",
-        "password":"brocade",
-        "subnet_id":[
-            "<subnetwork_id>"]
-    }
-]
+    - Install Brocade Neutron LBaaS Device Driver 
+    
+        - Please refer to https://github.com/brocade-vadx/adx-device-driver for details
 
+Install Instructions
+--------------------
+    - Download and install the Brocade LBaaS Plugin Driver code
 
-- Restart the Neutron Server
+        - From a temporary location, run "git clone https://github.com/brocade-vadx/openstack-plugin.git"
+        - Change directory ("cd openstack-plugin")
+
+        - Create $NEUTRON_HOME/services/loadbalancer/drivers/brocade directory if it does not exist
+
+        - copy the contents ("sudo cp * $NEUTRON_HOME/services/loadbalancer/drivers/brocade/") to $NEUTRON_HOME/services/loadbalancer/drivers/brocade directory. 
+
+        - $NEUTRON_HOME) is the location where OpenStack neutron component is installed. For example, $NEUTRON_HOME could be /usr/local/lib/python2.7/dist-packages/neutron
+
+    - Enable the Brocade LBaaS Plugin Driver in neutron.conf
+
+        - comment the Haproxy (which is the default service provider for LOADBALANCER) under service_provider section and specify Brocade as the service provider for LOADBALANCER (as shown below)
+
+        - service_provider = LOADBALANCER:brocade:neutron.services.loadbalancer.drivers.brocade.plugin_driver_v1.BrocadePluginDriverV1:default
+
+    - Restart the OpenStack Neutron Server

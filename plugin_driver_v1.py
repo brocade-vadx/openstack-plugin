@@ -56,7 +56,7 @@ class BrocadePluginDriverV1(abstract_driver.LoadBalancerAbstractDriver):
             self.active(context, loadbalancer_db.Vip, vip["id"])
         except Exception as e:
             LOG.error(_("Exception in create_vip in device driver : %s"), e)
-            self.error(context, loadbalancer_db.Vip, vip["id"], e.msg)
+            self.error(context, loadbalancer_db.Vip, vip["id"], e.message)
 
     @log.log
     def update_vip(self, context, old_vip, new_vip):
@@ -65,7 +65,7 @@ class BrocadePluginDriverV1(abstract_driver.LoadBalancerAbstractDriver):
             self.active(context, loadbalancer_db.Vip, new_vip["id"])
         except Exception as e:
             LOG.error(_("Exception in update_vip in device driver : %s"), e)
-            self.error(context, loadbalancer_db.Vip, new_vip["id"], e.msg)
+            self.error(context, loadbalancer_db.Vip, new_vip["id"], e.message)
 
     @log.log
     def delete_vip(self, context, vip):
@@ -84,7 +84,7 @@ class BrocadePluginDriverV1(abstract_driver.LoadBalancerAbstractDriver):
             self.active(context, loadbalancer_db.Pool, pool["id"])
         except Exception as e:
             LOG.error(_("Exception in create_pool in device driver : %s"), e)
-            #self.error(context, loadbalancer_db.Pool, pool["id"], e.msg)
+            #self.error(context, loadbalancer_db.Pool, pool["id"], e.message)
 
     @log.log
     def update_pool(self, context, old_pool, new_pool):
@@ -93,7 +93,7 @@ class BrocadePluginDriverV1(abstract_driver.LoadBalancerAbstractDriver):
             self.active(context, loadbalancer_db.Pool, new_pool["id"])
         except Exception as e:
             LOG.error(_("Exception in update in device driver : %s"), e)
-            self.error(context, loadbalancer_db.Pool, new_pool["id"], e.msg)
+            self.error(context, loadbalancer_db.Pool, new_pool["id"], e.message)
 
     @log.log
     def delete_pool(self, context, pool):
@@ -117,7 +117,7 @@ class BrocadePluginDriverV1(abstract_driver.LoadBalancerAbstractDriver):
             self.active(context, loadbalancer_db.Member, member["id"])
         except Exception as e:
             LOG.error(_("Exception in create_member in device driver : %s"), e)
-            self.error(context, loadbalancer_db.Member, member["id"], e.msg)
+            self.error(context, loadbalancer_db.Member, member["id"], e.message)
 
     @log.log
     def update_member(self, context, old_member, new_member):
@@ -127,7 +127,7 @@ class BrocadePluginDriverV1(abstract_driver.LoadBalancerAbstractDriver):
         except Exception as e:
             LOG.error(_("Exception in update_member in device driver : %s"), e)
             self.error(context, loadbalancer_db.Member,
-                       new_member["id"], e.msg)
+                       new_member["id"], e.message)
 
     @log.log
     def delete_member(self, context, member):
@@ -158,7 +158,7 @@ class BrocadePluginDriverV1(abstract_driver.LoadBalancerAbstractDriver):
                                                new_health_monitor['id'],
                                                pool_id,
                                                constants.ERROR,
-                                               e.msg)
+                                               e.message)
 
     @log.log
     def create_pool_health_monitor(self, context, health_monitor, pool_id):
@@ -176,7 +176,7 @@ class BrocadePluginDriverV1(abstract_driver.LoadBalancerAbstractDriver):
                                                health_monitor['id'],
                                                pool_id,
                                                constants.ERROR,
-                                               e.msg)
+                                               e.message)
 
     @log.log
     def delete_pool_health_monitor(self, context, health_monitor, pool_id):
